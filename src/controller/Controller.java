@@ -2,6 +2,8 @@ package controller;
 
 import java.util.Scanner;
 
+import model.data_structures.Cola;
+import model.logic.Comparendo;
 import model.logic.Modelo;
 import view.View;
 
@@ -36,58 +38,22 @@ public class Controller {
 			int option = lector.nextInt();
 			switch(option){
 				case 1:
-					view.printMessage("--------- \nCrear Arreglo \nDar capacidad inicial del arreglo: ");
-				    int capacidad = lector.nextInt();
-				    modelo = new Modelo(capacidad); 
-				    view.printMessage("Arreglo Dinamico creado");
-				    view.printMessage("Numero actual de elementos " + modelo.darTamano() + "\n---------");						
+				    modelo = new Modelo(); 
+				    modelo.cargar();
+				    view.printMessage("Datos cargados: "+modelo.darTamano());
+				    view.printMessage("El primer dato es: "+modelo.darPrimeroCola());						
 					break;
-
-				case 2:
-					view.printMessage("--------- \nDar cadena (simple) a ingresar: ");
-					dato = lector.next();
-					modelo.agregar(dato);
-					view.printMessage("Dato agregado");
-					view.printMessage("Numero actual de elementos " + modelo.darTamano() + "\n---------");						
-					break;
-
-				case 3:
-					view.printMessage("--------- \nDar cadena (simple) a buscar: ");
-					dato = lector.next();
-					respuesta = modelo.buscar(dato);
-					if ( respuesta != null)
-					{
-						view.printMessage("Dato encontrado: "+ respuesta);
-					}
-					else
-					{
-						view.printMessage("Dato NO encontrado");
-					}
-					view.printMessage("Numero actual de elementos " + modelo.darTamano() + "\n---------");						
-					break;
-
-				case 4:
-					view.printMessage("--------- \nDar cadena (simple) a eliminar: ");
-					dato = lector.next();
-					respuesta = modelo.eliminar(dato);
-					if ( respuesta != null)
-					{
-						view.printMessage("Dato eliminado "+ respuesta);
-					}
-					else
-					{
-						view.printMessage("Dato NO eliminado");							
-					}
-					view.printMessage("Numero actual de elementos " + modelo.darTamano() + "\n---------");						
-					break;
-
-				case 5: 
-					view.printMessage("--------- \nContenido del Arreglo: ");
-					view.printModelo(modelo);
-					view.printMessage("Numero actual de elementos " + modelo.darTamano() + "\n---------");						
-					break;	
 					
-				case 6: 
+				case 2:
+					Cola<Comparendo> rep =  modelo.repetidos();
+					view.printMessage("Cantidad: "+rep.darTamano());
+					for(Comparendo c : rep)
+					{
+						Comparendo actual = rep.dequeue(c);
+						view.printMessage(actual.datosCluster());
+					}		
+					break;
+				case 3: 
 					view.printMessage("--------- \n Hasta pronto !! \n---------"); 
 					lector.close();
 					fin = true;
@@ -98,6 +64,6 @@ public class Controller {
 					break;
 			}
 		}
-		
 	}	
+	
 }

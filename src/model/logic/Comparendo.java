@@ -65,7 +65,15 @@ public class Comparendo implements Comparable<Comparendo> {
 	@Override
 	public int compareTo(Comparendo o) {
 		// TODO Auto-generated method stub
-		int num = 1;
+		int num = 0;
+		if(fecha_hora.before(o.darFecha()))
+		{
+			num = -1;
+		}
+		if(fecha_hora.after(o.darFecha()))
+		{
+			num = 1;
+		}
 		if(fecha_hora.equals(o.darFecha()))
 		{
 			num = 0;
@@ -75,6 +83,14 @@ public class Comparendo implements Comparable<Comparendo> {
 			if(objectId<o.darObjId())
 			{
 				num = -1;
+			}
+			if(objectId>o.darObjId())
+			{
+				num = 1;
+			}
+			if(objectId==o.darObjectId())
+			{
+				num = 0;
 			}
 		}
 		return num;
