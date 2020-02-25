@@ -36,15 +36,6 @@ public class MergeSort {
 	
 	public static  boolean less(Comparable a, Comparable b)
 	{
-		boolean menor;
-		if(a.compareTo(b)<0)
-		{
-			menor =  true;
-		}
-		else
-		{
-			menor = false;
-		}
-		return menor;
+		return a.compareTo(b)<0;
 	}
 }

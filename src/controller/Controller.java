@@ -2,7 +2,7 @@ package controller;
 
 import java.util.Scanner;
 
-import model.data_structures.Cola;
+import model.data_structures.Queue;
 import model.logic.Comparendo;
 import model.logic.Modelo;
 import view.View;
@@ -45,7 +45,7 @@ public class Controller {
 					break;
 					
 				case 2:
-					Cola<Comparendo> rep =  modelo.repetidos();
+					Queue<Comparendo> rep =  modelo.repetidos();
 					view.printMessage("Cantidad: "+rep.darTamano());
 					for(Comparendo c : rep)
 					{

@@ -12,7 +12,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 import com.google.gson.stream.JsonReader;
 
-import model.data_structures.Cola;
+import model.data_structures.Queue;
 
 
 /**
@@ -20,16 +20,17 @@ import model.data_structures.Cola;
  *
  */
 public class Modelo {
-private Cola<Comparendo> datos;
+private Queue<Comparendo> datos;
 	
 	public static String PATH = "./data/comparendos_dei_2018_small.geojson";
+	private static Comparable[] aux;
 	
 	/**
 	 * Constructor del modelo del mundo con capacidad predefinida
 	 */
 	public Modelo()
 	{
-		datos = new Cola<Comparendo>();
+		datos = new Queue<Comparendo>();
 	}
 	
 	/**
@@ -41,31 +42,36 @@ private Cola<Comparendo> datos;
 		return datos.darTamano();
 	}
 	
-	public Cola<Comparendo> repetidos()
+	public Queue<Comparendo> repetidos()
 	{
-		Cola<Comparendo> mayor = new Cola<Comparendo>();
-		Cola<Comparendo> temp = new Cola<Comparendo>();
-		String tipo = datos.darPrimerElemento().darInfr();
-		
-		for(Comparendo n : datos)
+		if(datos==null)
 		{
-			Comparendo actual = datos.dequeue(n);
-			if(tipo.equals(actual.darInfr()))
+			cargar();
+		}
+
+		Queue<Comparendo> mayor = new Queue<Comparendo>();
+		Queue<Comparendo> temp = new Queue<Comparendo>();
+		String tipo = datos.darPrimerElemento().darInfr();
+
+		for(Comparendo c: datos)
+		{
+			datos.dequeue();
+			if(tipo.equals(c.darInfr()))
 			{	
-				temp.enqueue(actual);
+				temp.enqueue(c);
 			}
 			else
 			{
-				tipo = actual.darInfr();
-				temp = new Cola<Comparendo>() ;
-				temp.enqueue(actual);
+				tipo = c.darInfr();
+				temp = new Queue<Comparendo>() ;
+				temp.enqueue(c);
 			}
 			if(temp.darTamano()>mayor.darTamano())
 			{
 				mayor = temp;
 			}
 		}
-		
+
 		return mayor;
 	}
 
@@ -116,6 +122,57 @@ private Cola<Comparendo> datos;
 		}	
 	}
 	
+	public Comparendo[] crearArreglo()
+	{
+		Comparendo[] comparendos = new Comparendo[datos.darTamano()];
+		int i = 0;
+		for(Comparendo e:datos)
+		{
+			comparendos[i] = datos.dequeue();
+			i++;
+		}
+		return comparendos;
+	}
 	
+	public void mergeSort()
+	{
+		sort(crearArreglo());	
+	}
+	
+	// auxiliary array for merges
+	public static void sort(Comparable[] a) {
+	aux = new Comparable[a.length];
+	sort(a, 0, a.length - 1); // Allocate space just once.
+	}
+	
+	private static void sort(Comparable[] a, int lo, int hi) {
+	if (hi <= lo) return; // Sort a[lo..hi].
+	int mid = lo + (hi - lo)/2;
+	sort(a, lo, mid);
+	// Sort left half.
+	sort(a, mid+1, hi);
+	// Sort right half.
+	merge(a, lo, mid, hi);
+	}
+	
+	public static void merge(Comparable[] a, int lo, int mid, int hi)
+	{
+	// Merge a[lo..mid] with a[mid+1..hi].
+	int i = lo, j = mid+1;
+	for (int k = lo; k <= hi; k++)
+	// Copy a[lo..hi] to aux[lo..hi].
+	aux[k] = a[k];
+	for (int k = lo; k <= hi; k++)
+	// Merge back to a[lo..hi].
+	if (i > mid) a[k] = aux[j++];
+	else if (j > hi ) a[k] = aux[i++];
+	else if (less(aux[j], aux[i])) a[k] = aux[j++];
+	else a[k] = aux[i++];
+	}
+	
+	public static  boolean less(Comparable a, Comparable b)
+	{
+		return a.compareTo(b)<0;
+	}
 	
 }

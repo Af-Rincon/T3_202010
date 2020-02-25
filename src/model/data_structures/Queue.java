@@ -3,14 +3,14 @@ package model.data_structures;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class Cola<T> implements Iterable<T>  {
+public class Queue<T> implements Iterable<T>  {
 
 	
 	private Node<T> primero;
 	private Node<T> ultimo;
 	private int size;
 	
-	public Cola()
+	public Queue()
 	{
 		primero = null;
 		ultimo = null;
@@ -34,15 +34,15 @@ public class Cola<T> implements Iterable<T>  {
 		size++;
 	}
 	
-	public T dequeue(T item)
+	public T dequeue()
 	{
-		 	Node<T> viejo = primero;
-		 	T buscado = primero.darElemento();
-		 	primero = viejo.darSiguiente();
-		 	viejo.cambiarSiguiente(null);
-		 	size--;
-		 	return buscado;
-		
+		Node<T> viejo = primero;
+		T buscado = primero.darElemento();
+		primero = viejo.darSiguiente();
+		viejo.cambiarSiguiente(null);
+		size--;
+		return buscado;
+
 	}
 	
 	public int darTamano()
