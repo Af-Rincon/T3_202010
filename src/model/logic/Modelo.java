@@ -6,6 +6,7 @@ import java.io.FileReader;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Random;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -122,7 +123,7 @@ private Queue<Comparendo> datos;
 		}	
 	}
 	
-	public Comparendo[] crearArreglo()
+	public Comparendo[] copiarArreglo()
 	{
 		Comparendo[] comparendos = new Comparendo[datos.darTamano()];
 		int i = 0;
@@ -136,7 +137,7 @@ private Queue<Comparendo> datos;
 	
 	public void mergeSort()
 	{
-		sort(crearArreglo());	
+		sort(copiarArreglo());	
 	}
 	
 	// auxiliary array for merges
@@ -197,9 +198,23 @@ private Queue<Comparendo> datos;
 	
 	 public static void mergesort(Comparable[] a)
 	 {
-	 crearArreglo().shuffle(a);
+	 shuffle(a);
 	 sort(a, 0, a.length - 1);
 	 }
+	 
+	 private static void shuffle(Comparable[] a)
+	 {
+		 Random rd = new Random();
+		 
+		 for(int i = a.length -1; i>0;i--)
+		 {
+			 int index = rd.nextInt(i+1);
+			 Comparable n = a[index];
+			 a[index] = a[i];
+			 a[i] = n;
+		 }
+	 }
+	 
 	 private static void sortTwo(Comparable[] a, int lo, int hi)
 	 {
 	 if (hi <= lo) return;
