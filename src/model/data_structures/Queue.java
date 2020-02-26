@@ -54,6 +54,11 @@ public class Queue<T> implements Iterable<T>  {
 	{
 		return primero.darElemento();
 	}
+	
+	public T darUltimoElemento()
+	{
+		return ultimo.darElemento();
+	}
 
 	
 	@Override

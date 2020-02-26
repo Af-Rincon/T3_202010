@@ -23,7 +23,7 @@ import model.data_structures.Queue;
 public class Modelo {
 private Queue<Comparendo> datos;
 	
-	public static String PATH = "./data/comparendos_dei_2018_small.geojson";
+	public static String PATH = "./data/comparendos_dei_2018.geojson";
 	private static Comparable[] aux;
 	
 	/**
@@ -75,10 +75,17 @@ private Queue<Comparendo> datos;
 
 		return mayor;
 	}
+	
+	
 
 	public Comparendo darPrimeroCola()
 	{
 		return datos.darPrimerElemento();
+	}
+	
+	public Comparendo darUltimoCola()
+	{
+		return datos.darUltimoElemento();
 	}
 	
 	public void cargar()
@@ -223,7 +230,24 @@ private Queue<Comparendo> datos;
 	 sort(a, j+1, hi);
 	 }
 	
-	
+	 public class Shell
+	 {
+	 public void sortSS(Comparable[] a)
+	 {
+		 int N = a.length;
+		 int h = 1;
+		 while (h < N/3)
+			 h = 3*h + 1;
+		 while (h >= 1) {
+			 for (int i = h; i < N; i++) {
+				 for (int j = i; j >= h && less(a[j], a[j-h]); j -= h)
+					 exch(a, j, j-h);
+			 }
+			 h = h/3;
+		 }
+	 }
+	 }
+
 	public static  boolean less(Comparable a, Comparable b)
 	{
 		return a.compareTo(b)<0;
