@@ -55,6 +55,7 @@ public class Controller {
 
 			case 2: 
 				
+				modelo.cargar();
 				Comparable copia [ ] = modelo.copiarArreglo();
 				view.printMessage("Copia creada");
 				
@@ -79,7 +80,8 @@ public class Controller {
 				break;
 
 			case 3:
-				modelo.cargar(); 
+				
+				modelo.cargar();
 				Comparable copia_Comparendos [ ] = modelo.copiarArreglo();
 				long startTime = System.currentTimeMillis();
 				modelo.shellSort(copia_Comparendos);
@@ -108,7 +110,8 @@ public class Controller {
 				break;
 				
 			case 4: 
-				modelo.cargar(); 
+				 
+				modelo.cargar();
 				Comparable copia_Comparendos_2 [ ] = modelo.copiarArreglo();
 				long startTime2 = System.currentTimeMillis();
 				modelo.sort(copia_Comparendos_2);
