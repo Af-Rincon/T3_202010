@@ -144,7 +144,7 @@ public class Controller {
 				
 				Comparable copia_Comparendos_3 [ ] = modelo.copiarArreglo();
 				long startTime3 = System.currentTimeMillis();
-				modelo.sort(copia_Comparendos_3);
+				modelo.quickSort(copia_Comparendos_3);
 				long endTime3 = System.currentTimeMillis(); 
 				long duration3 = endTime3 - startTime3; 
 				
