@@ -55,7 +55,7 @@ public class Controller {
 
 			case 2: 
 				
-				modelo.cargar();
+				
 				Comparable copia [ ] = modelo.copiarArreglo();
 				view.printMessage("Copia creada");
 				
@@ -81,7 +81,7 @@ public class Controller {
 
 			case 3:
 				
-				modelo.cargar();
+				
 				Comparable copia_Comparendos [ ] = modelo.copiarArreglo();
 				long startTime = System.currentTimeMillis();
 				modelo.shellSort(copia_Comparendos);
@@ -111,7 +111,7 @@ public class Controller {
 				
 			case 4: 
 				 
-				modelo.cargar();
+				
 				Comparable copia_Comparendos_2 [ ] = modelo.copiarArreglo();
 				long startTime2 = System.currentTimeMillis();
 				modelo.sort(copia_Comparendos_2);
@@ -141,7 +141,7 @@ public class Controller {
 				
 			case 5: 
 				
-				modelo.cargar(); 
+				
 				Comparable copia_Comparendos_3 [ ] = modelo.copiarArreglo();
 				long startTime3 = System.currentTimeMillis();
 				modelo.sort(copia_Comparendos_3);
@@ -174,7 +174,7 @@ public class Controller {
 				lector.close();
 				fin = true;
 				break;	
-
+				
 			default: 
 				view.printMessage("--------- \n Opcion Invalida !! \n---------");
 				break;

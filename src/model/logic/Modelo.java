@@ -134,19 +134,16 @@ public class Modelo {
 	{
 		Comparendo[] comparendos = new Comparendo[datos.darTamano()];
 		int i = 0;
-		for(Comparendo e:datos)
+		for(Comparendo e : datos)
 		{
-			comparendos[i] = datos.dequeue();
+			comparendos[i] = e;
 			i++;
 		}
 		return comparendos;
 	}
 
 	//Merge
-	public void mergeSort()
-	{
-		sort(copiarArreglo());	
-	}
+	
 
 	// auxiliary array for merges
 	public static void sort(Comparable[] a) {
