@@ -23,7 +23,7 @@ import model.data_structures.Queue;
 public class Modelo {
 	private Queue<Comparendo> datos;
 
-	public static String PATH = "./data/comparendos_dei_2018.geojson";
+	public static String PATH = "./data/comparendos_dei_2018_small.geojson";
 	private static Comparable[] aux;
 
 	/**
